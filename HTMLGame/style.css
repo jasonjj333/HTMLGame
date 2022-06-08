@@ -27,12 +27,13 @@ header{
 .TextArea{
     text-align: center;
 }
-.ActionArea{
+.Menu{
     display:flex;
     justify-content:center;
 }
 button{
     padding:10px 20px;
-    margin-left:100px;
-    margin-right:100px
+    margin-left:25px;
+    margin-right:25px;
+    margin-top:10px;
 }
