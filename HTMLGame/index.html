@@ -21,7 +21,7 @@
     <!-- Character Portraits -->
     <div class="PortraitArea">
         <div class="Portait" id="PlayerPortrait">
-            <img src="CrusaderImg.jfif">
+            <img src="CrusaderImg.png">
         </div>
         <div class="Portrait" id="EnemyPortrait">
             <img  src="Ghoul_Howl.webp">
@@ -29,14 +29,14 @@
     </div>
 
     <!-- Text Display -->
-    <div class = "TextArea" id = "Prompt">
-        <p>Begin the fight! Roll for initiative</p>
+    <div class = "TextArea">
+        <p id = "Prompt">Begin the fight! Roll for initiative</p>
     </div>
 
     <!-- Action Container -->
     <div class = "ActionArea">
-        <button type="button">Roll</button>
-        <button type="button">Roll</button>
+        <button type="button" id = "player1Roll" onclick = 'player1Roll()'>Roll</button>
+        <button type="button" id = "player2Roll" onclick = 'player2Roll()'>Roll</button>
     </div>
 
 </body>

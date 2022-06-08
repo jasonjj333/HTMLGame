@@ -1,6 +1,5 @@
 body{
     font-family: 'Open Sans', sans-serif;
-    background-color: gray;
 }
 header{
     text-align: center;
@@ -23,7 +22,6 @@ header{
     text-align: center;
 }
 .ActionArea{
-    background: gray;
     display:flex;
     justify-content:center;
 }

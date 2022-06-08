@@ -1,3 +1,71 @@
 let player1Ready = false;
 let player2Ready = false;
 
+let player1 = {
+    initiative:0,
+    maxhp:40,
+    currenthp:40,
+    spell1:2,
+    mod:16
+}
+
+let player2 = {
+    initiative:0,
+    maxhp:28,
+    currenthp:28,
+    spell1:2,
+    spell2:1,
+    mod:16
+}
+
+function getMod(value) {
+    return Math.floor((value -10) /2);
+}
+
+function rolld20(mod,prof) {
+    let roll = Math.floor(Math.random()*20+1);
+    console.log(roll + " + " + mod + " + " + prof);
+    return Math.floor(roll + mod + prof);
+}
+
+function player1Roll() {
+    document.getElementById("player1Roll").style.visibility = 'hidden';
+    player1.initiative = rolld20(getMod(14),2);
+    console.log("Player 1 rolled " + player1.initiative);
+    player1Ready = true;
+    if(!player2Ready){
+        resetPrompt()
+    }
+    appendPrompt(" Player 1 rolled " + player1.initiative + " for initiative. ");
+
+    checkReady();
+
+}
+
+function player2Roll() {
+    document.getElementById("player2Roll").style.visibility = 'hidden';
+    player2.initiative = rolld20(getMod(9),2);
+    console.log("Player 2 rolled " + player2.initiative);
+    player2Ready = true;
+    if(!player1Ready){
+        resetPrompt()
+    }
+    appendPrompt(" Player 2 rolled " + player2.initiative + " for initiative. ");
+    checkReady();
+}
+
+function resetPrompt() {
+    document.querySelector("#Prompt").innerText="";
+}
+
+function appendPrompt(msg) {
+    document.querySelector("#Prompt").innerText +=msg;
+}
+
+function checkReady() {
+    if(player1Ready && player2Ready){
+        if(appendPrompt(player1.initiative>player2.initiative?" Player 1 will go first. ": " Player 2 will go first. "));
+        
+    }
+}
+
