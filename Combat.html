@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <title> HTML Game </title>
+</head>
+
+<!-- Title Area -->
+<header>
+    <h2>
+        Level 1
+    </h2>
+</header>
+
+<body>
+    <!-- Character Portraits -->
+    <div class="PortraitArea">
+        <div class="Portait" id="PlayerPortrait">
+            <img src="CrusaderImg.png" height="250">
+        </div>
+        <div class="Portrait" id="EnemyPortrait">
+            <img  src="GhoulImg.png" height="250">
+        </div>
+    </div>
+
+    <!-- Text Display -->
+    <div class = "TextArea">
+        <p id = "Prompt">Begin the fight! Roll for initiative</p>
+    </div>
+
+    <!-- Initiative Container -->
+    <div class = "Menu" id = "InitiativeArea">
+        <button type="button" id = "player1Roll" onclick = 'player1RollInitiative()'>Roll</button>
+    </div>
+
+    <!-- Combat Container -->
+    <div class = "Menu" id = "CombatArea">
+        <button type="button" id ="Action" title = "One Action can be cast per Turn."onclick = 'selectAction()'>Actions</button>
+        <button type="button" id ="BonusActions" title = "One Bonus Action can be cast per Turn." onclick = 'selectBonusAction()'>Bonus Actions</button>
+        <button type="button" id ="Spells" title = "One Spell can be cast be turn and use a spell slot." onclick = 'selectSpell()'>Spells</button>
+        <button type="button" id ="Potions" title = "Potions use a Bonus Action to drink." onclick = 'selectPotion()'>Potions</button>
+        <button type="button" id ="EndTurn" onclick = 'endTurn(2)'>End Turn</button>
+    </div>
+
+    <!-- Action Container -->
+    <div class = "Menu" id = "ActionArea">
+        <button type = "button" class = "Action" id = "Attack" title = "Costs 1 Action." onclick = 'attack()'>Attack</button>
+        <button type = "button" class = "BackButton" id = "ABack" title = "Go back to Combat Menu." onclick = 'returnToMenuA()'>Back</button>
+    </div>
+
+    <!-- Bonus Action Container-->
+    <div class = "Menu" id = "BonusActionArea">
+        <button type = "button" class = "BonusAction" id = "Pray" title = "Costs 1 BA. Can be played once per combat. Gain ADV on your next Attack" onclick = 'pray()'>Pray</button> 
+        <button type = "button" class = "BonusAction" id = "SecondWind" title = "Costs 1 BA. Can be played once per rest. Gain one free Action this turn." onclick = 'secondWind()'>Second Wind</button>
+        <button type = "button" class = "BackButton" id = "BABack" title = "Go back to Combat Menu." onclick = 'returnToMenuBA()'>Back</button>
+    </div>
+
+    <!-- Spells Container -->
+    <div class = "Menu" id = "SpellArea">
+        <button type = "button" class = "Spell" class = "BonusAction" id = "Smite">Smite</button>
+        <button type = "button" class = "Spell" class = "Action">Spur Flame</button>
+        <button type = "button" class = "BackButton" id = "SBack" title = "Go back to Combat Menu." onclick = 'returnToMenuS()'>Back</button>
+    </div>
+
+    <!-- Potions Container -->
+    <div class = "Menu" id = "PotionArea">
+        <button type = "button" class = "BackButton" id = "PBack" title = "Go back to Combat Menu." onclick = 'returnToMenuP()'>Back</button>
+    </div>
+
+
+</body>
+
+</html>

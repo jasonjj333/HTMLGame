@@ -1,0 +1,53 @@
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    background: url('CryptBackground.png');
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    color:white;
+}
+header{
+    text-align: center;
+    margin-top:100px;
+}
+.PortraitArea{
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+    margin-left:50px;
+    margin-right:50px;
+}
+.TextArea{
+    text-align: center;
+}
+.Menu{
+    display:flex;
+    justify-content:center;
+}
+button{
+    padding:10px 20px;
+    margin-left:25px;
+    margin-right:25px;
+    margin-top:10px;
+}
+#CombatArea{
+    display:flex;
+    justify-content:center;
+    display:none;
+}
+#ActionArea{
+    display:flex;
+    justify-content:center;
+    display:none;
+}
+#BonusActionArea{
+    display:none;
+}
+#SpellArea{
+    display:none;
+}
+#PotionArea{
+    display:none;
+}
+
