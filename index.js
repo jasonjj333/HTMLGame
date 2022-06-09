@@ -38,8 +38,8 @@ let player1 = {
 let player2 = {
     name: "The Ghoul",
     initiative: 0,
-    maxhp: 23,
-    currenthp: 23,
+    maxhp: 100,
+    currenthp: 100,
     armor: 11,
     spell1: 2,
     spell2: 1,
@@ -316,9 +316,15 @@ function endTurn(num) {
 
 
 function updateComponents() {
-    //availableAction <= 0? document.getElementById('Action').disabled = "true": document.getElementById('Action').disabled = "false";
-    //availableAction <= 0? document.getElementById('BonusActions').disabled = "true": document.getElementById('BonusActions').disabled = "false";
-    //availableAction <= 0? document.getElementById('Spells').disabled = "true": document.getElementById('Spells').disabled = "false";
+    availableAction >= 1? document.getElementById('Action').disabled = false: document.getElementById('Action').disabled = true;
+    availableBonusAction >= 1? document.getElementById('BonusActions').disabled = false: document.getElementById('BonusActions').disabled = true;
+    availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
+    if (player1.currenthp < 1){
+        const deathWindow = window.location("Combat.html"); 
+        resetPrompt(); 
+        alert("You Have Died"); 
+        window.focus(); 
+    }
     document.getElementById('HealthBar').max = player1.maxhp;
     document.getElementById('HealthBar').value = player1.currenthp;
     document.getElementById('EnemyHealthBar').max = player2.maxhp;
