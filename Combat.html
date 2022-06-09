@@ -26,7 +26,7 @@
 
     <!-- HUD (Health bar, Spell Slots, Actions)-->
     <div id="HUD">
-        <progress id="HealthBar" value="100" max="100"></progress>
+        <progress id="HealthBar" value="100" max="100"></progress><progress id="EnemyHealthBar" value="100" max="100"></progress>
         <div id="HUDText">
             <p id="HealthText" title="The amount of health the player has. 
 They will die when it reaches 0">HP: 100/100</p>
@@ -96,7 +96,7 @@ Whoever with higher initiative roll will go first" onclick='player1RollInitiativ
 
     <!-- Spells Container -->
     <div class="Menu" id="SpellArea">
-        <button type="button" class="Spell" class="BonusAction" id="Smite">Smite</button>
+        <button type="button" class="Spell" class="BonusAction" title = "Deal "id="Smite">Smite</button>
         <button type="button" class="Spell" class="Action">Spur Flame</button>
         <button type="button" class="BackButton" id="SBack" title="Go back to Combat Menu."
             onclick='returnToMenuS()'>Back</button>

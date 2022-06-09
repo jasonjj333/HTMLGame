@@ -9,17 +9,19 @@ body{
 }
 header{
     text-align: center;
-    margin-top:100px;
 }
 .PortraitArea{
     display:flex;
     justify-content:center;
-    margin-top:50px;
     margin-left:50px;
     margin-right:50px;
 }
 .TextArea{
     text-align: center;
+}
+#HUD {
+    display:flex;
+    justify-content: center;
 }
 .Menu{
     display:flex;
@@ -32,7 +34,6 @@ button{
     margin-top:10px;
 }
 #CombatArea{
-    display:flex;
     justify-content:center;
     display:none;
 }
@@ -49,5 +50,13 @@ button{
 }
 #PotionArea{
     display:none;
+}
+#EnemyHealthBar {
+    position:relative;
+    left:150px;
+}
+#HUDText {
+    position:relative;
+    right:300px;
 }
 
