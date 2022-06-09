@@ -44,7 +44,7 @@ let player2 = {
     adv:false,
     weapon: enemyWeapon
 }
-updateComponents();
+updateHUD();
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve,time));
 }
@@ -300,13 +300,10 @@ function endTurn(num) {
     }
 }
 
-function updateComponents() {
-    availableAction <= 0? document.querySelector('#Action').disabled = true: document.querySelector('#Action').disabled = false;
-    availableBonusAction <= 0?document.getElementById("BonusActions").disabled = true:document.getElementById("Action").disabled = false;
-    availableSpell <= 0? document.getElementById("Spell").disabled = true: document.getElementById("Spell").disabled = false;
-    document.getElementById("HealthText").innerText = "HP: " +player1.currenthp + "/" + player1.maxhp;
-    document.getElementById("ACText").value = player1.armor;
-    document.getElementById("SpellsText").value = "Spell Slots: " + getSpellSlotList();
+function updateHUD() {
+    document.getElementById('HealthText').innerHTML = "HP: " +player1.currenthp + "/" + player1.maxhp;
+    document.getElementById("ACText").innerText = "AC: " +player1.armor;
+    document.getElementById("SpellsText").innerText = "Spell Slots: " + getSpellSlotList();
 }
 
 function getSpellSlotList() {
