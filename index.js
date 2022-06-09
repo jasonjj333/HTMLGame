@@ -38,12 +38,12 @@ let player1 = {
 let player2 = {
     name: "The Ghoul",
     initiative: 0,
-    maxhp: 100,
-    currenthp: 100,
+    maxhp: 23,
+    currenthp: 23,
     armor: 11,
     spell1: 2,
     spell2: 1,
-    mod: 16,
+    mod: 11,
     prof: 2,
     adv: false,
     weapon: enemyWeapon
