@@ -232,6 +232,7 @@ function attack() {
             dealDamage(player1, player2, player1.weapon.num, player1.weapon.dmg);
             console.log("Player1 HP: " + player1.currenthp + " Player2 HP: " + player2.currenthp);
         }
+        availableAction--;
         returnToMenuA();
     }
     else {
@@ -266,6 +267,7 @@ function secondWind() {
         availableAction++;
         appendPrompt(" You feel invigorated, gaining one free Action.");
         secondWindCounter--;
+        availableBonusAction--;
         returnToMenuBA();
     }
     else if (secondWindCounter <= 0) {
@@ -281,6 +283,7 @@ function pray() {
         player1.adv = true;
         appendPrompt(" You offer a quick prayer to strike true.");
         prayCounter--;
+        availableBonusAction--;
         returnToMenuBA();
     }
     else if (prayCounter <= 0) {
