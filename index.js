@@ -24,6 +24,7 @@ let player1 = {
     currenthp:40,
     armor:14,
     spell1:2,
+    spell2:0,
     mod:16,
     prof:2,
     adv:false,
@@ -43,7 +44,7 @@ let player2 = {
     adv:false,
     weapon: enemyWeapon
 }
-
+updateComponents();
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve,time));
 }
@@ -297,4 +298,24 @@ function endTurn(num) {
     else {
         goPlayer2();
     }
+}
+
+function updateComponents() {
+    availableAction <= 0? document.querySelector('#Action').disabled = true: document.querySelector('#Action').disabled = false;
+    availableBonusAction <= 0?document.getElementById("BonusActions").disabled = true:document.getElementById("Action").disabled = false;
+    availableSpell <= 0? document.getElementById("Spell").disabled = true: document.getElementById("Spell").disabled = false;
+    document.getElementById("HealthText").innerText = "HP: " +player1.currenthp + "/" + player1.maxhp;
+    document.getElementById("ACText").value = player1.armor;
+    document.getElementById("SpellsText").value = "Spell Slots: " + getSpellSlotList();
+}
+
+function getSpellSlotList() {
+    let text = "";
+    if(player1.spell1 != 0) {
+        text += "1:" + player1.spell1+ " "
+    }
+    if(player1.spell2 != 0) {
+        text += "2:" + player1.spell2+ " "
+    }
+    return text;
 }
