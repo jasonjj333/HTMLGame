@@ -349,13 +349,16 @@ function updateComponents() {
         resetPrompt(); 
         document.getElementById("PopWindow").style.visibility = 'visible';
         document.getElementById("EndArea").style.visibility = 'visible';
-        
+        document.getElementById("nextLevel").style.visibility = 'hidden';
         appendPrompt("You have Died, click below to return to the Main Menu")
     }
 
     if (player2.currenthp < 1){
         document.getElementById("PopWindow").style.visibility = 'visible';
-        document.getElementById("PopWindow").innerHTML = "Congratulations You Completed Level";
+        resetPrompt(); 
+        document.getElementById("PopWindow").innerHTML = "Congratulations You Completed Level 1"; //update levels
+        document.getElementById("CombatArea").style.visibility = 'hidden';
+        document.getElementById("nextLevel").style.visibility = 'visible';
     }
 }
 
