@@ -83,7 +83,7 @@ Whoever with higher initiative roll will go first" onclick='player1RollInitiativ
         <button type="button" id="BonusActions" title="One Bonus Action can be cast per Turn."
             onclick='selectBonusAction()'>Bonus Actions</button>
         <button type="button" id="Spells" title="One Spell can be cast be turn and use a spell slot."
-            onclick='selectSpell()'>Spells</button>
+            onclick='selectSpellLevel()'>Spells</button>
         <button type="button" id="Potions" title="Potions use a Bonus Action to drink."
             onclick='selectPotion()'>Potions</button>
         <button type="button" id="EndTurn" onclick='endTurn(2)'>End Turn</button>
@@ -98,9 +98,10 @@ Whoever with higher initiative roll will go first" onclick='player1RollInitiativ
 
     <!-- Bonus Action Container-->
     <div class="Menu" id="BonusActionArea">
-        <button type="button" class="BonusAction" id="Pray"
-            title="Costs 1 BA. Can be played once per combat. Gain ADV on your next Attack"
-            onclick='pray()'>Pray</button>
+        <button type="button" class="BonusAction" id="Guidance"
+            title="Costs 1 BA. Can be played once per combat. Gain ADV on your next Attack. 
+ADV is advantage, letting the player roll twice to attack and using the higher roll."
+            onclick='guidance()'>Guidance</button>
         <button type="button" class="BonusAction" id="SecondWind"
             title="Costs 1 BA. Can be played once per rest. Gain one free Action this turn."
             onclick='secondWind()'>Second Wind</button>
@@ -111,10 +112,18 @@ Whoever with higher initiative roll will go first" onclick='player1RollInitiativ
     <!-- Spells Container -->
     <div class="Menu" id="SpellArea">
         <button type="button" class="Spell" class="BonusAction" title = "Deal "id="Smite">Smite</button>
-        <button type="button" class="Spell" class="Action">Spur Flame</button>
-        <button type="button" class="BackButton" id="SBack" title="Go back to Combat Menu."
-            onclick='returnToMenuS()'>Back</button>
+        <button type="button" class="Spell" class="Action" id = "SpurFlame" onclick = 'spurFlame()'>Spur Flame</button>
+        <button type="button" class="BackButton" id="SBack" title="Go back to Combat Menu."onclick='returnToSpellLevelS()'>Back</button>
     </div>
+
+     <!-- Spell Level Container -->
+     <div class="Menu" id="SpellLevelArea">
+        <button type="button" class="Spell" class="SpellLevel" title = "Cast spell at first level. "id="FirstLevel" onclick = 'selectSpell(1)'>First Level</button>
+        <button type="button" class="Spell" class="SpellLevel" title = "Cast spell at second level. "id="SecondLevel">Second Level</button>
+        <button type="button" class="Spell" class="SpellLevel" title = "Cast spell at third level. "id="ThirdLevel">Third Level</button>
+        <button type="button" class="BackButton" id="SLBack" title="Go back to Combat Menu."onclick='returnToMenuSL()'>Back</button>
+    </div>
+
 
     <!-- Potions Container -->
     <div class="Menu" id="PotionArea">

@@ -31,8 +31,7 @@ header{
     justify-content: center;
 }
 .Menu{
-    display:flex;
-    justify-content:center;
+    display:none;
 }
 button{
     padding:10px 20px;
@@ -40,23 +39,9 @@ button{
     margin-right:25px;
     margin-top:10px;
 }
-#CombatArea{
+#InitiativeArea{
     justify-content:center;
-    display:none;
-}
-#ActionArea{
     display:flex;
-    justify-content:center;
-    display:none;
-}
-#BonusActionArea{
-    display:none;
-}
-#SpellArea{
-    display:none;
-}
-#PotionArea{
-    display:none;
 }
 #EnemyHealthBar {
     position:relative;

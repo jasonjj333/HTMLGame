@@ -4,7 +4,7 @@ let availableAction = 1;
 let availableBonusAction = 1;
 let availableSpell = 1;
 let promptCounter = 0;
-let prayCounter = 1;
+let guidanceCounter = 1;
 let secondWindCounter = 1;
 let noActionChecker = false;
 let noBonusActionChecker = false;
@@ -12,6 +12,7 @@ let noSpellChecker = false;
 let extraFlatDamage = 0;
 let extraRollDamage = {num: 0, dmg: 0};
 let toggleSmite = false;
+let currentSpellLevel = 0;
 
 const prompt = document.getElementById('Prompt');
 class Weapon {
@@ -190,9 +191,16 @@ function selectBonusAction() {
     document.getElementById('BonusActionArea').style.display = "flex";
 }
 
-function selectSpell() {
-    document.getElementById('CombatArea').style.display = "none";
+function selectSpell(num) {
+    currentSpellLevel = num;
+    console.log("Spell Level selected: " + currentSpellLevel);
+    document.getElementById('SpellLevelArea').style.display = "none";
     document.getElementById('SpellArea').style.display = "flex";
+}
+
+function selectSpellLevel() {
+    document.getElementById('CombatArea').style.display = "none";
+    document.getElementById('SpellLevelArea').style.display = "flex";
 }
 
 function selectPotion() {
@@ -208,14 +216,29 @@ function returnToMenuA() {
 
 function returnToMenuBA() {
     updateComponents();
-    document.getElementById('BonusActionArea').style.display = "none"; document.getElementById('CombatArea').style.display = "flex";
+    document.getElementById('BonusActionArea').style.display = "none";
     document.getElementById('CombatArea').style.display = "flex";
 }
 
 function returnToMenuS() {
     updateComponents();
-    document.getElementById('SpellArea').style.display = "none"; document.getElementById('CombatArea').style.display = "flex";
+    currentSpellLevel = 0;
+    document.getElementById('SpellArea').style.display = "none";
     document.getElementById('CombatArea').style.display = "flex";
+}
+
+function returnToMenuSL() {
+    updateComponents();
+    document.getElementById('SpellLevelArea').style.display = "none";
+    document.getElementById('CombatArea').style.display = "flex";
+}
+
+function returnToSpellLevelS() {
+    updateComponents();
+    currentSpellLevel = 0;
+    console.log("Spell Level selected: " + currentSpellLevel);
+    document.getElementById('SpellArea').style.display = "none";
+    document.getElementById('SpellLevelArea').style.display = "flex";
 }
 
 function returnToMenuP() {
@@ -225,7 +248,7 @@ function returnToMenuP() {
 }
 
 function dealDamage(fromCharacter, toCharacter, num, dmg) {
-    let damage = roll(num, dmg, fromCharacter.mod, fromCharacter.prof) + extraFlatDamage + roll(extraRollDamage.num, extraRollDamage.dmg);
+    let damage = roll(num, dmg, fromCharacter.mod, fromCharacter.prof) + extraFlatDamage + roll(extraRollDamage.num, extraRollDamage.dmg,10,0);
     appendPrompt(" " + fromCharacter.name + " has dealt " + damage + " damage to " + toCharacter.name + ".");
     if (damage >= toCharacter.currenthp) {
         toCharacter.currenthp = 0;
@@ -233,6 +256,21 @@ function dealDamage(fromCharacter, toCharacter, num, dmg) {
     else {
         toCharacter.currenthp -= damage;
     }
+}
+
+function dealSpellDamage(fromCharacter, toCharacter, num, dmg, level, leveldmg) {
+    let damage = roll(num,dmg, 10, 0);
+    for(let i = 0; i < level; i++) {
+        damage += roll(1,leveldmg, 10, 0);
+    }
+    appendPrompt(" " + fromCharacter.name + " has dealt " + damage + " damage to " + toCharacter.name + ".");
+    if (damage >= toCharacter.currenthp) {
+        toCharacter.currenthp = 0;
+    }
+    else {
+        toCharacter.currenthp -= damage;
+    }
+
 }
 
 function attack() {
@@ -287,16 +325,16 @@ function secondWind() {
     }
 }
 
-function pray() {
-    if (availableBonusAction > 0 && prayCounter && availableAction > 0) {
+function guidance() {
+    if (availableBonusAction > 0 && guidanceCounter && availableAction > 0) {
         player1.adv = true;
         appendPrompt(" You offer a quick prayer to strike true.");
-        prayCounter--;
+        guidanceCounter--;
         availableBonusAction--;
         returnToMenuBA();
     }
-    else if (prayCounter <= 0) {
-        appendPrompt(" Pray refreshes after combat ends, Please go back. ");
+    else if (guidanceCounter <= 0) {
+        appendPrompt(" Guidance refreshes after combat ends, Please go back. ");
     }
     else if (availableAction <= 0) {
         appendPrompt(" No Action available to give ADV.");
@@ -308,8 +346,17 @@ function pray() {
 
 function smite() {
     /*toggles between on and off. On will
-    
+    open new menu after user attacks and hits, asking if they want to use smite
+    will then ask what spell level and deal extra damage
     */
+}
+
+function spurFlame() {
+    let damage = 0;
+    //choose spell level and deal 2d8 dmg + 1d8 per spell level
+    if(checkToHit(player1,player2)) {
+        damage += dealDamage()
+    }
 }
 
 function endTurn(num) {
@@ -331,7 +378,11 @@ function endTurn(num) {
 function updateComponents() {
     availableAction >= 1? document.getElementById('Action').disabled = false: document.getElementById('Action').disabled = true;
     availableBonusAction >= 1? document.getElementById('BonusActions').disabled = false: document.getElementById('BonusActions').disabled = true;
+    availableSpell >= 1? document.getElementById('SpellLevelArea').disabled = false: document.getElementById('SpellLevel').disabled = true;
     availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
+    player1.spell1 >= 1? document.getElementById('FirstLevel').disabled = false: document.getElementById('FirstLevel').disabled = true;
+    player2.spell2 >= 1? document.getElementById('SecondLevel').disabled = false: document.getElementById('SecondLevel').disabled = true;
+    player2.spell2 >= 1? document.getElementById('ThirdLevel').disabled = false: document.getElementById('ThirdLevel').disabled = true;
     document.getElementById("EndArea").style.visibility = 'hidden';
     document.getElementById("PopWindow").style.visibility = 'hidden';
     document.getElementById('HealthBar').max = player1.maxhp;
