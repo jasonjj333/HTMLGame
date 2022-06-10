@@ -43,7 +43,7 @@ let player2 = {
     name: "The Ghoul",
     initiative: 0,
     maxhp: 100,
-    currenthp: 10,
+    currenthp: 1,
     armor: 11,
     spell1: 2,
     spell2: 1,
@@ -395,8 +395,9 @@ function updateComponents() {
     document.getElementById("AvailableText").innerText = "Available: " + getAvailableList();
 
     if (player1.currenthp < 1){
-        
-        document.getElementById("CombatArea").style.visibility = 'hidden';
+        document.getElementById("EndArea").style.display = 'flex';
+        document.getElementById("returnToMenu").style.display = 'flex';
+        document.getElementById("CombatArea").style.display = "none";
         resetPrompt(); 
         document.getElementById("PopWindow").style.visibility = 'visible';
         document.getElementById("EndArea").style.visibility = 'visible';
@@ -405,6 +406,8 @@ function updateComponents() {
     }
 
     if (player2.currenthp < 1){
+        document.getElementById("PopWindow").style.display = 'block';
+        document.getElementById("EndArea").style.display = 'flex';
         document.getElementById("PopWindow").style.visibility = 'visible';
         resetPrompt(); 
         document.getElementById("PopWindow").innerHTML = "Congratulations You Completed Level 1"; //update levels
