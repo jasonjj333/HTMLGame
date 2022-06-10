@@ -6,6 +6,10 @@ let availableSpell = 1;
 let promptCounter = 0;
 let prayCounter = 1;
 let secondWindCounter = 1;
+let noActionChecker = false;
+let noBonusActionChecker = false;
+let noSpellChecker = false;
+
 const prompt = document.getElementById('Prompt');
 class Weapon {
     constructor(name, num, dmg) {
@@ -18,7 +22,7 @@ class Weapon {
 let playerWeapon = new Weapon("Straight Sword", 1, 8);
 let enemyWeapon = new Weapon("Claws", 2, 4);
 let player1 = {
-    name: "Julian",
+    name: "Julian THE ROCKET LEAGUE GOD",
     initiative: 0,
     maxhp: 40,
     currenthp: 40,
@@ -39,7 +43,7 @@ let player2 = {
     armor: 11,
     spell1: 2,
     spell2: 1,
-    mod: 16,
+    mod: 11,
     prof: 2,
     adv: false,
     weapon: enemyWeapon
@@ -51,6 +55,7 @@ function delay(time) {
 function getModifier(value) {
     return Math.floor((value - 10) / 2);
 }
+
 
 //Function to roll default 1d20 dice. Used for initiative.
 function rolld20(mod, prof) {
@@ -79,6 +84,7 @@ function roll(num, dmg, mod, prof) {
 //Rolls player initiative
 function player1RollInitiative() {
     document.getElementById("InitiativeArea").style.visibility = 'hidden';
+    document.getElementById("EndArea").style.visibility = 'hidden';
     player1.initiative = rolld20(getModifier(14), 2);
     console.log("Player 1 rolled " + player1.initiative);
     player1Ready = true;
@@ -167,52 +173,52 @@ function goPlayer2() {
 //Options: Action BonusAction Spell Potion Back
 function openMenu() {
     currentMenu = document.getElementById('CombatArea');
-    document.getElementById('CombatArea').style.display = "block";
+    document.getElementById('CombatArea').style.display = "flex";
 }
 
 //Action Selected: Options: Attack Back
 function selectAction() {
     document.getElementById('CombatArea').style.display = "none";
-    document.getElementById('ActionArea').style.display = "block";
+    document.getElementById('ActionArea').style.display = "flex";
 }
 
 function selectBonusAction() {
     document.getElementById('CombatArea').style.display = "none";
-    document.getElementById('BonusActionArea').style.display = "block";
+    document.getElementById('BonusActionArea').style.display = "flex";
 }
 
 function selectSpell() {
     document.getElementById('CombatArea').style.display = "none";
-    document.getElementById('SpellArea').style.display = "block";
+    document.getElementById('SpellArea').style.display = "flex";
 }
 
 function selectPotion() {
     document.getElementById('CombatArea').style.display = "none";
-    document.getElementById('PotionArea').style.display = "block";
+    document.getElementById('PotionArea').style.display = "flex";
 }
 
 function returnToMenuA() {
     updateComponents();
     document.getElementById('ActionArea').style.display = "none";
-    document.getElementById('CombatArea').style.display = "block";
+    document.getElementById('CombatArea').style.display = "flex";
 }
 
 function returnToMenuBA() {
     updateComponents();
-    document.getElementById('BonusActionArea').style.display = "none"; document.getElementById('CombatArea').style.display = "block";
-    document.getElementById('CombatArea').style.display = "block";
+    document.getElementById('BonusActionArea').style.display = "none"; document.getElementById('CombatArea').style.display = "flex";
+    document.getElementById('CombatArea').style.display = "flex";
 }
 
 function returnToMenuS() {
     updateComponents();
-    document.getElementById('SpellArea').style.display = "none"; document.getElementById('CombatArea').style.display = "block";
-    document.getElementById('CombatArea').style.display = "block";
+    document.getElementById('SpellArea').style.display = "none"; document.getElementById('CombatArea').style.display = "flex";
+    document.getElementById('CombatArea').style.display = "flex";
 }
 
 function returnToMenuP() {
     updateComponents();
-    document.getElementById('PotionArea').style.display = "none"; document.getElementById('CombatArea').style.display = "block";
-    document.getElementById('CombatArea').style.display = "block";
+    document.getElementById('PotionArea').style.display = "none"; document.getElementById('CombatArea').style.display = "flex";
+    document.getElementById('CombatArea').style.display = "flex";
 }
 
 function dealDamage(fromCharacter, toCharacter, num, dmg) {
@@ -309,12 +315,25 @@ function endTurn(num) {
     }
 }
 
+
 function updateComponents() {
-    //availableAction <= 0? document.getElementById('Action').disabled = "true": document.getElementById('Action').disabled = "false";
-    //availableAction <= 0? document.getElementById('BonusActions').disabled = "true": document.getElementById('BonusActions').disabled = "false";
-    //availableAction <= 0? document.getElementById('Spells').disabled = "true": document.getElementById('Spells').disabled = "false";
+    availableAction >= 1? document.getElementById('Action').disabled = false: document.getElementById('Action').disabled = true;
+    availableBonusAction >= 1? document.getElementById('BonusActions').disabled = false: document.getElementById('BonusActions').disabled = true;
+    availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
+    document.getElementById("EndArea").style.visibility = 'hidden';
+    if (player1.currenthp < 1){
+        var deathm = document.getElementById("DeathWindow");
+        document.getElementById("CombatArea").style.visibility = 'hidden';
+        resetPrompt(); 
+        deathm.style.opacity = 1; 
+        document.getElementById("EndArea").style.visibility = 'visible';
+        
+        appendPrompt("You have Died, click below to return to the Main Menu")
+    }
     document.getElementById('HealthBar').max = player1.maxhp;
     document.getElementById('HealthBar').value = player1.currenthp;
+    document.getElementById('EnemyHealthBar').max = player2.maxhp;
+    document.getElementById('EnemyHealthBar').value = player2.currenthp;
     document.getElementById('HealthText').innerHTML = "HP: " + player1.currenthp + "/" + player1.maxhp;
     document.getElementById("ACText").innerText = "AC: " + player1.armor;
     document.getElementById("SpellsText").innerText = "Spell Slots: " + getSpellSlotList();
@@ -348,3 +367,4 @@ function getAvailableList() {
     console.log(text);
     return text;
 }
+

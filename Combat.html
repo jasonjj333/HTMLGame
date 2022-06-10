@@ -28,7 +28,7 @@
 
     <!-- HUD (Health bar, Spell Slots, Actions)-->
     <div id="HUD">
-        <progress id="HealthBar" value="100" max="100"></progress>
+        <progress id="HealthBar" value="100" max="100"></progress><progress id="EnemyHealthBar" value="100" max="100"></progress>
         <div id="HUDText">
             <p id="HealthText" title="The amount of health the player has. 
 They will die when it reaches 0">HP: 100/100</p>
@@ -43,6 +43,13 @@ A = 1 Action, B = 1 Bonus Action, S = 1 Spell">Available Moves: A B S</p>
         </div>
 
     </div>
+
+    <!--Death Message-->
+    <div id="DeathWindow">
+        <h1>You Died</h1>
+    </div>
+
+
     <!-- Character Portraits -->
     <div class="PortraitArea">
         <div class="Portait" id="PlayerPortrait">
@@ -63,6 +70,14 @@ A = 1 Action, B = 1 Bonus Action, S = 1 Spell">Available Moves: A B S</p>
         <button type="button" id="player1Roll" title="Initiative determines the order of combat turns. 
 Whoever with higher initiative roll will go first" onclick='player1RollInitiative()'>Roll</button>
     </div>
+
+    <!--End Container-->
+    <div class="Menu" id="EndArea">
+        
+        <button type="button" id="returnToMenu" onclick = "window.location.href='startingPage.html';"> Main Menu </button>
+    
+    </div>
+    
 
     <!-- Combat Container -->
     <div class="Menu" id="CombatArea">
@@ -98,7 +113,7 @@ Whoever with higher initiative roll will go first" onclick='player1RollInitiativ
 
     <!-- Spells Container -->
     <div class="Menu" id="SpellArea">
-        <button type="button" class="Spell" class="BonusAction" id="Smite">Smite</button>
+        <button type="button" class="Spell" class="BonusAction" title = "Deal "id="Smite">Smite</button>
         <button type="button" class="Spell" class="Action">Spur Flame</button>
         <button type="button" class="BackButton" id="SBack" title="Go back to Combat Menu."
             onclick='returnToMenuS()'>Back</button>
@@ -109,6 +124,8 @@ Whoever with higher initiative roll will go first" onclick='player1RollInitiativ
         <button type="button" class="BackButton" id="PBack" title="Go back to Combat Menu."
             onclick='returnToMenuP()'>Back</button>
     </div>
+
+   
 
     <script src="index.js"></script>
 </body>
