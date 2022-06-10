@@ -322,7 +322,6 @@ function updateComponents() {
     availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
     document.getElementById("EndArea").style.visibility = 'hidden';
     if (player1.currenthp < 1){
-        // const deathWindow = window.location.href ="startingPage.html"; button implementation 
         var deathm = document.getElementById("DeathWindow");
         document.getElementById("CombatArea").style.visibility = 'hidden';
         resetPrompt(); 
