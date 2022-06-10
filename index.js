@@ -43,7 +43,7 @@ let player2 = {
     name: "The Ghoul",
     initiative: 0,
     maxhp: 100,
-    currenthp: 100,
+    currenthp: 10,
     armor: 11,
     spell1: 2,
     spell2: 1,
