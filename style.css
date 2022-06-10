@@ -1,20 +1,27 @@
+html{
+    height: 100%;
+}
+
 
 body{
     font-family: 'Open Sans', sans-serif;
     background: url('CryptBackground.png');
     background-position: center;
-    background-size: auto;
+    background-size:cover;
     background-repeat: no-repeat;
     color:white;
+    background-repeat: no-repeat;
 }
 header{
     text-align: center;
 }
 .PortraitArea{
+    position:relative;
     display:flex;
     justify-content:center;
     margin-left:50px;
     margin-right:50px;
+    
 }
 .TextArea{
     text-align: center;
@@ -60,3 +67,12 @@ button{
     right:300px;
 }
 
+#DeathWindow{
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: auto;
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
+    
+}

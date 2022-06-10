@@ -320,7 +320,9 @@ function updateComponents() {
     availableBonusAction >= 1? document.getElementById('BonusActions').disabled = false: document.getElementById('BonusActions').disabled = true;
     availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
     if (player1.currenthp < 1){
-        const deathWindow = window.location.href ="Combat.html"; 
+        // const deathWindow = window.location.href ="startingPage.html"; button implementation 
+        var deathm = document.getElementById("DeathWindow");
+        deathm.style.opacity = 1; 
         resetPrompt(); 
     }
     document.getElementById('HealthBar').max = player1.maxhp;
