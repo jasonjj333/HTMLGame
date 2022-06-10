@@ -39,7 +39,7 @@ let player2 = {
     name: "The Ghoul",
     initiative: 0,
     maxhp: 100,
-    currenthp: 100,
+    currenthp: 20,
     armor: 11,
     spell1: 2,
     spell2: 1,
@@ -321,15 +321,7 @@ function updateComponents() {
     availableBonusAction >= 1? document.getElementById('BonusActions').disabled = false: document.getElementById('BonusActions').disabled = true;
     availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
     document.getElementById("EndArea").style.visibility = 'hidden';
-    if (player1.currenthp < 1){
-        var deathm = document.getElementById("DeathWindow");
-        document.getElementById("CombatArea").style.visibility = 'hidden';
-        resetPrompt(); 
-        deathm.style.opacity = 1; 
-        document.getElementById("EndArea").style.visibility = 'visible';
-        
-        appendPrompt("You have Died, click below to return to the Main Menu")
-    }
+    document.getElementById("PopWindow").style.visibility = 'hidden';
     document.getElementById('HealthBar').max = player1.maxhp;
     document.getElementById('HealthBar').value = player1.currenthp;
     document.getElementById('EnemyHealthBar').max = player2.maxhp;
@@ -338,6 +330,21 @@ function updateComponents() {
     document.getElementById("ACText").innerText = "AC: " + player1.armor;
     document.getElementById("SpellsText").innerText = "Spell Slots: " + getSpellSlotList();
     document.getElementById("AvailableText").innerText = "Available: " + getAvailableList();
+
+    if (player1.currenthp < 1){
+        
+        document.getElementById("CombatArea").style.visibility = 'hidden';
+        resetPrompt(); 
+        document.getElementById("PopWindow").style.visibility = 'visible';
+        document.getElementById("EndArea").style.visibility = 'visible';
+        
+        appendPrompt("You have Died, click below to return to the Main Menu")
+    }
+
+    if (player2.currenthp < 1){
+        document.getElementById("PopWindow").style.visibility = 'visible';
+        document.getElementById("PopWindow").innerHTML = "Congratulations You Completed Level";
+    }
 }
 
 function getSpellSlotList() {
