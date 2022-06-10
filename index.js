@@ -343,7 +343,8 @@ function updateComponents() {
 
     if (player2.currenthp < 1){
         document.getElementById("PopWindow").style.visibility = 'visible';
-        document.getElementById("PopWindow").innerHTML = "Congratulations You Completed Level";
+        resetPrompt(); 
+        document.getElementById("PopWindow").innerHTML = "Congratulations You Completed Level 1"; //update levels
     }
 }
 
