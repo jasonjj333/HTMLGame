@@ -84,6 +84,7 @@ function roll(num, dmg, mod, prof) {
 //Rolls player initiative
 function player1RollInitiative() {
     document.getElementById("InitiativeArea").style.visibility = 'hidden';
+    document.getElementById("EndArea").style.visibility = 'hidden';
     player1.initiative = rolld20(getModifier(14), 2);
     console.log("Player 1 rolled " + player1.initiative);
     player1Ready = true;
@@ -319,11 +320,16 @@ function updateComponents() {
     availableAction >= 1? document.getElementById('Action').disabled = false: document.getElementById('Action').disabled = true;
     availableBonusAction >= 1? document.getElementById('BonusActions').disabled = false: document.getElementById('BonusActions').disabled = true;
     availableSpell >= 1? document.getElementById('Spells').disabled = false: document.getElementById('Spells').disabled = true;
+    document.getElementById("EndArea").style.visibility = 'hidden';
     if (player1.currenthp < 1){
         // const deathWindow = window.location.href ="startingPage.html"; button implementation 
         var deathm = document.getElementById("DeathWindow");
-        deathm.style.opacity = 1; 
+        document.getElementById("CombatArea").style.visibility = 'hidden';
         resetPrompt(); 
+        deathm.style.opacity = 1; 
+        document.getElementById("EndArea").style.visibility = 'visible';
+        
+        appendPrompt("You have Died, click below to return to the Main Menu")
     }
     document.getElementById('HealthBar').max = player1.maxhp;
     document.getElementById('HealthBar').value = player1.currenthp;
