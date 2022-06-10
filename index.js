@@ -22,7 +22,7 @@ class Weapon {
 let playerWeapon = new Weapon("Straight Sword", 1, 8);
 let enemyWeapon = new Weapon("Claws", 2, 4);
 let player1 = {
-    name: "Julian",
+    name: "Julian THE ROCKET LEAGUE GOD",
     initiative: 0,
     maxhp: 40,
     currenthp: 40,
