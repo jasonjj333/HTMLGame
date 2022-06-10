@@ -79,11 +79,11 @@ button{
 }
 
 button{
-    background-color: rgb(181, 181, 181);
+    background-color: rgb(211, 209, 209);
     color: rgb(0, 0, 0);
     font-weight:400;
-    border-width: .3rem;
-    border-style:ridge;
-    border-bottom-color: rgb(117, 0, 0);
+    border-width: .4em;
+    border-style:inset;
+    border-bottom-color: rgb(87, 0, 0);
     border-left-color: rgb(100, 0, 0);
 }
