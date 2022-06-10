@@ -9,6 +9,9 @@ let secondWindCounter = 1;
 let noActionChecker = false;
 let noBonusActionChecker = false;
 let noSpellChecker = false;
+let extraFlatDamage = 0;
+let extraRollDamage = {num: 0, dmg: 0};
+let toggleSmite = false;
 
 const prompt = document.getElementById('Prompt');
 class Weapon {
@@ -39,7 +42,7 @@ let player2 = {
     name: "The Ghoul",
     initiative: 0,
     maxhp: 100,
-    currenthp: 20,
+    currenthp: 100,
     armor: 11,
     spell1: 2,
     spell2: 1,
@@ -222,7 +225,7 @@ function returnToMenuP() {
 }
 
 function dealDamage(fromCharacter, toCharacter, num, dmg) {
-    let damage = roll(num, dmg, fromCharacter.mod, fromCharacter.prof);
+    let damage = roll(num, dmg, fromCharacter.mod, fromCharacter.prof) + extraFlatDamage + roll(extraRollDamage.num, extraRollDamage.dmg);
     appendPrompt(" " + fromCharacter.name + " has dealt " + damage + " damage to " + toCharacter.name + ".");
     if (damage >= toCharacter.currenthp) {
         toCharacter.currenthp = 0;
@@ -303,10 +306,19 @@ function pray() {
     }
 }
 
+function smite() {
+    /*toggles between on and off. On will
+    
+    */
+}
+
 function endTurn(num) {
     availableAction = 1;
     availableBonusAction = 1;
     availableSpell = 1;
+    extraFlatDamage = 0;
+    extraRollDamage.dmg = 0;
+    extraRollDamage.num =0;
     if (num == 1) {
         goPlayer1();
     }
